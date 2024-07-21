@@ -1,0 +1,42 @@
+Atores
+
+Usuario:
+Permite que os usuários se registrem no sistema e gerenciem suas próprias tarefas.
+
+Administrador:
+Tem acesso a funcionalidades avançadas, como a visualização de todos os usuários e tarefas, bem como a capacidade de gerenciar categorias.
+Funcionalidades
+
+
+
+Cadastro de usuários:
+Permite que os usuários se registrem no sistema fornecendo nome, email e senha.
+Administrador pode visualizar e gerenciar todos os usuários cadastrados.
+
+Gerenciamento de tarefas:
+Os usuários podem criar tarefas com título, descrição, data de criação e status (concluída/pendente).
+As tarefas são atribuídas aos usuários que as criam.
+Administrador pode visualizar todas as tarefas criadas por qualquer usuário.
+
+Categorização de tarefas:
+As tarefas podem ser associadas a categorias específicas, permitindo uma organização mais eficiente.
+Administrador pode criar, editar e excluir categorias.
+
+Visualização de tarefas:
+Os usuários podem visualizar todas as suas tarefas, incluindo detalhes como título, descrição, data de criação, status e a categoria associada (se houver).
+Administrador pode visualizar todas as tarefas de todos os usuários.
+
+Edição e exclusão de tarefas:
+Os usuários têm a capacidade de editar e excluir suas próprias tarefas.
+Administrador pode editar e excluir qualquer tarefa.
+
+Visualização de usuários e categorias:
+É possível visualizar todos os usuários cadastrados no sistema, bem como as categorias existentes.
+Administrador tem uma visão completa e controle sobre todas as entidades do sistema.
+
+
+Relacionamentos
+Usuario pode ter múltiplas Tarefas.
+Tarefa é associada a um único Usuario.
+Tarefa pode ser associada a uma única Categoria.
+Categoria pode ter múltiplas Tarefas associadas a ela.
