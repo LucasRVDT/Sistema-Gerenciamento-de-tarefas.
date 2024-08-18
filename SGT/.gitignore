@@ -1,0 +1,57 @@
+### Eclipse/STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Logs ###
+*.log
+*.log.*
+
+### Maven ###
+/target/
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+/logging.properties
+
+### Gradle ###
+.gradle/
+/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+!gradle-wrapper.jar
+gradle-app.setting
+
+### Outros diretórios temporários ###
+/tmp/
+/temp/
+/cache/
+/*.tmp
+/*.temp
+
+### Arquivos locais do sistema operacional ###
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
