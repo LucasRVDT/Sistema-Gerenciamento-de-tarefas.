@@ -62,4 +62,9 @@ public class ViewMainController {
 		return "home.html";
 	}
 	
+	@GetMapping("/login")
+	public String getLogin() {
+		return "login.html";
+	}
+	
 }

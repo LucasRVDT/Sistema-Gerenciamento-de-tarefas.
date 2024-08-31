@@ -49,6 +49,7 @@ gradle-app.setting
 /cache/
 /*.tmp
 /*.temp
+/data/
 
 ### Arquivos locais do sistema operacional ###
 .DS_Store

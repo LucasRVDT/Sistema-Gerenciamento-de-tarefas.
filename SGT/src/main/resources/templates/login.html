@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sistema de gerenciamento</title>
+	<link rel="stylesheet" href="./styles/login.scss">
+  </head>
+  <body>
+    <main>
+		<div class="login-container">
+		    <h2>Login</h2>
+		    <form (ngSubmit)="login()">
+		      <div class="form-group">
+		        <label for="email">Email</label>
+		        <input type="email" id="email" name="email" [(ngModel)]="email" required>
+		      </div>
+		      <div class="form-group">
+		        <label for="password">Password</label>
+		        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+		      </div>
+		      <button type="submit">Login</button>
+		      <a href="#">Forgot Password?</a>
+		    </form>
+		</div>
+    </main>
+  </body>
+</html>
