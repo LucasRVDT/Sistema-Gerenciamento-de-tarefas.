@@ -1,16 +1,20 @@
-// Categoria.java
 package br.edu.iff.ccc.bsi.webdev.entities;
+
+import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_categoria")
-public class Categoria extends Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "tb_item")
+public abstract class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
