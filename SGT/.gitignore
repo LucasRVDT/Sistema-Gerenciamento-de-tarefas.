@@ -55,3 +55,7 @@ gradle-app.setting
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# SQL Server files
+*.mdf
+*.ldf
