@@ -1,63 +1,130 @@
 package br.edu.iff.ccc.bsi.webdev.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_tarefa")
-public class Tarefa extends Item {
+public class Tarefa implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "titulo", nullable = false)
+    private String titulo;
+
+    @Column(name = "descricao")
+    private String descricao;
 
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao;
+
+    @Column(name = "data_conclusao")
+    private LocalDateTime dataConclusao;
+
+    @Column(name = "prioridade", nullable = false)
+    private String prioridade;
 
     @Column(name = "status", nullable = false)
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "coluna_id")
+    private Coluna coluna;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @JoinColumn(name = "responsavel_id")
+    private Usuario responsavel;
 
-    // Getters e Setters adicionais
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
+    @OneToMany(mappedBy = "tarefa")
+    private List<Anexo> anexos;
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
 
-    public String getStatus() {
-        return status;
-    }
+    // Getters and Setters
+    
+	public String getTitulo() {
+		return titulo;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
+	public void setDataCriacao(LocalDateTime dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public LocalDateTime getDataConclusao() {
+		return dataConclusao;
+	}
+
+	public void setDataConclusao(LocalDateTime dataConclusao) {
+		this.dataConclusao = dataConclusao;
+	}
+
+	public String getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(String prioridade) {
+		this.prioridade = prioridade;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Coluna getColuna() {
+		return coluna;
+	}
+
+	public void setColuna(Coluna coluna) {
+		this.coluna = coluna;
+	}
+
+	public Usuario getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Usuario responsavel) {
+		this.responsavel = responsavel;
+	}
+
+	public List<Anexo> getAnexos() {
+		return anexos;
+	}
+
+	public void setAnexos(List<Anexo> anexos) {
+		this.anexos = anexos;
+	}
+
 }

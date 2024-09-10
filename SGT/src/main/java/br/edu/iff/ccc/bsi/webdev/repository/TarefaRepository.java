@@ -12,13 +12,12 @@ import br.edu.iff.ccc.bsi.webdev.entities.Tarefa;
 
 
 @Repository
-public interface TaskRepository extends JpaRepository<Tarefa, Long>{
+public interface TarefaRepository extends JpaRepository<Tarefa, Long>{
 
   @Query("SELECT t FROM Tarefa t WHERE t.status = :status")
 List<Tarefa> findByStatus(@Param("status") String status);
 
 @Query("SELECT t FROM Tarefa t WHERE t.dataCriacao > :data")
 List<Tarefa> findTasksCreatedAfter(@Param("data") LocalDate data);
-
 
 }

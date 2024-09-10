@@ -1,12 +1,14 @@
 package br.edu.iff.ccc.bsi.webdev.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +26,12 @@ public class Usuario implements Serializable{
     
     @Column(unique = true, name = "email", nullable = false)
     private String email;
+    
+    @Column(name = "senha", nullable = false)
+    private String senha;
+
+	@OneToMany(mappedBy = "usuario")
+    private List<Quadro> quadros;
 
     public Usuario(Long id) {
         super();
@@ -57,4 +65,20 @@ public class Usuario implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Quadro> getQuadros() {
+		return quadros;
+	}
+
+	public void setQuadros(List<Quadro> quadros) {
+		this.quadros = quadros;
+	}
 }
