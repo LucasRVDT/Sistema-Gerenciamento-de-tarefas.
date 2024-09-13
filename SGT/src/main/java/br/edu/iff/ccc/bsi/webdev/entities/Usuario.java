@@ -11,6 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
+
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario implements Serializable{
@@ -21,12 +26,17 @@ public class Usuario implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @NotNull(message = "O campo username não pode ser nulo.")
     @Column(name = "username", nullable = false)
     private String username;
     
+    @NotNull(message = "O campo email não pode ser nulo.")
+    @Email(message = " Digite um e-mail valido")
     @Column(unique = true, name = "email", nullable = false)
     private String email;
     
+    @NotNull(message = "O campo senha não pode ser nulo.")
+    @Size(min = 8, message = "A senha deve ter no minimo 8 caracteres.")
     @Column(name = "senha", nullable = false)
     private String senha;
 
