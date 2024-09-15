@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @SuppressWarnings("serial")
 @Entity
@@ -26,11 +26,11 @@ public class Anexo implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-		@NotNull(message = "O campo url não pode ser nulo.")
+	@NotNull(message = "O campo url não pode ser nulo.")
     @Column(name = "url", nullable = false)
     private String url;
 
-		@NotNull(message = "O campo tipo não pode ser nulo.")
+	@NotNull(message = "O campo tipo não pode ser nulo.")
     @Column(name = "tipo", nullable = false)
     private String tipo;
 

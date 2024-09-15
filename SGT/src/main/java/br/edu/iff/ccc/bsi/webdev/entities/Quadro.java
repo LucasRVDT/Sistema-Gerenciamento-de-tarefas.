@@ -17,8 +17,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 
@@ -31,7 +31,7 @@ public class Quadro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-		@NotNull(message = "O campo nome não pode ser nulo.")
+	@NotNull(message = "O campo nome não pode ser nulo.")
     @Column(name = "nome", nullable = false)
     private String nome;
 
@@ -39,11 +39,11 @@ public class Quadro implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-		@NotNull(message = "O campo data_criacao não pode ser nulo.")
+	@NotNull(message = "O campo data_criacao não pode ser nulo.")
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao;
 
-		@NotNull(message = "O campo status não pode ser nulo.")
+	@NotNull(message = "O campo status não pode ser nulo.")
     @Column(name = "status", nullable = false)
     private String status;
 
