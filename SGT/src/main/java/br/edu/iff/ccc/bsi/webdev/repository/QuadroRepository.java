@@ -15,5 +15,5 @@ public interface QuadroRepository extends JpaRepository<Quadro, Long> {
     List<Quadro> findByNomeContaining(String nome);
     
     @Query("SELECT q FROM Quadro q WHERE q.usuario.id = ?1")
-    List<Quadro> findByUsuarioId(Long usuarioId);
+    List<Quadro> findByUsuarioId(Long id);
 }
