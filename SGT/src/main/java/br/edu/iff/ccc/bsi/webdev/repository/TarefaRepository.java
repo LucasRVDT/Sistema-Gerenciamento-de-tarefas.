@@ -18,6 +18,6 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long>{
 List<Tarefa> findByStatus(@Param("status") String status);
 
 @Query("SELECT t FROM Tarefa t WHERE t.dataCriacao > :data")
-List<Tarefa> findTasksCreatedAfter(@Param("data") LocalDate data);
+List<Tarefa> findTarefasCreatedAfter(@Param("data") LocalDate data);
 
 }
