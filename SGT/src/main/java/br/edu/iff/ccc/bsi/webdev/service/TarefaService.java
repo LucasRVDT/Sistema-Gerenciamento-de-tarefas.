@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Tarefa;
 import br.edu.iff.ccc.bsi.webdev.repository.TarefaRepository;
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class TarefaService {
@@ -19,39 +18,20 @@ public class TarefaService {
     private TarefaRepository tarefaRepository;
 
     // CRUD
-    public List<Tarefa> findAllTarefas() {
+    public List<Tarefa> findAll() {
         return tarefaRepository.findAll();
     }
 
-    public Optional<Tarefa> findTarefaById(Long id) {
+    public Optional<Tarefa> findById(Long id) {
         return tarefaRepository.findById(id);
     }
 
-    public Tarefa saveTarefa(Tarefa tarefa) {
+    public Tarefa save(Tarefa tarefa) {
         return tarefaRepository.save(tarefa);
     }
 
-    public Tarefa updateTarefa(Long id, Tarefa tarefaAtualizada) {
-        Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
-        
-        if (tarefaOptional.isPresent()) {
-            Tarefa tarefa = tarefaOptional.get();
-            tarefa.setTitulo(tarefaAtualizada.getTitulo());
-            tarefa.setDescricao(tarefaAtualizada.getDescricao());
-            tarefa.setStatus(tarefaAtualizada.getStatus());
-            tarefa.setDataCriacao(tarefaAtualizada.getDataCriacao());
-            return tarefaRepository.save(tarefa);
-        }
-        
-        throw new EntityNotFoundException("Tarefa com ID " + id + " não encontrada.");
-    }
-
-    public void deleteTarefa(Long id) {
-        if (tarefaRepository.existsById(id)) {
+    public void deleteById(Long id) {
             tarefaRepository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException("Tarefa com ID " + id + " não encontrada.");
-        }
     }
 
     // Método para buscar tarefas por status
