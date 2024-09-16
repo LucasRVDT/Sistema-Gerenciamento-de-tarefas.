@@ -15,35 +15,16 @@ public class ColunaService {
     @Autowired
     private ColunaRepository colunaRepository;
 
-    // CREATE
     public Coluna createColuna(Coluna coluna) {
         return colunaRepository.save(coluna);
     }
 
-    // READ
-    public Coluna findColunaById(Long id) {
-        Optional<Coluna> optionalColuna = colunaRepository.findById(id);
-        return optionalColuna.orElse(null);
-    }
-    
-    // UPDATE
-    public Coluna updateColuna(Long id, Coluna colunaDetails) {
-        Optional<Coluna> optionalColuna = colunaRepository.findById(id);
-        if (optionalColuna.isPresent()) {
-            Coluna coluna = optionalColuna.get();
-            coluna.setNome(colunaDetails.getNome());
-            coluna.setOrdem(colunaDetails.getOrdem());
-            coluna.setQuadro(colunaDetails.getQuadro());
-            return colunaRepository.save(coluna);
-        }
-        return null;
+    public Optional<Coluna> findColunaById(Long id) {
+        return colunaRepository.findById(id);
     }
 
-    // DELETE
     public void deleteColuna(Long id) {
-        if (colunaRepository.existsById(id)) {
-            colunaRepository.deleteById(id);
-        }
+        colunaRepository.deleteById(id);
     }
 
     public List<Coluna> findAllColunas() {
