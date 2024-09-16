@@ -3,6 +3,7 @@ package br.edu.iff.ccc.bsi.webdev;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +31,32 @@ public class UsuarioServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+
+    @Test
+  public void testSave() {
+      Usuario usuario = new Usuario();
+      when(usuarioRepository.save(usuario)).thenReturn(usuario);
+
+      Usuario saveUsuario = usuarioService.save(usuario);
+
+      assertNotNull(saveUsuario);
+      assertEquals(usuario, saveUsuario);
+      verify(usuarioRepository, times(1)).save(usuario); 
+  }
+
+ @Test
+    public void testFindById() {
+        Long id = 1L;
+        Usuario usuario = new Usuario();
+        when(usuarioRepository.findById(id)).thenReturn(Optional.of(usuario));
+
+        Optional<Usuario> result = usuarioService.findById(id);
+
+
+        assertTrue(result.isPresent());
+        assertEquals(usuario, result.get());
+        verify(usuarioRepository, times(1)).findById(id);
+    }
     // Teste para findByUsername
     @Test
     public void testFindByUsername() {
@@ -58,6 +85,33 @@ public class UsuarioServiceTest {
         assertEquals("user@example.com", usuarioEmail.get().getEmail());
         verify(usuarioRepository, times(1)).findByEmail("user@example.com");
         assertThat(usuarioEmail).contains(usuario);
+    }
+
+    @Test
+     void testFindAll() {
+        // Arrange
+  
+        when(usuarioRepository.findAll()).thenReturn(List.of(new Usuario()));
+
+        // Act
+        List<Usuario> usuario = usuarioService.findAll();
+
+        // Assert
+        assertNotNull(usuario);
+        assertEquals(1, usuario.size());
+        verify(usuarioRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testDeleteById() {
+        // Arrange
+        Long id = 1L;
+
+        // Act
+        usuarioService.deleteById(id);
+
+        // Assert
+        verify(usuarioRepository, times(1)).deleteById(id);
     }
 }
 
