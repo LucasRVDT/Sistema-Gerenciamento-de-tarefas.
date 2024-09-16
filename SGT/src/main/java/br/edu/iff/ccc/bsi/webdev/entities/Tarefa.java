@@ -1,7 +1,7 @@
 package br.edu.iff.ccc.bsi.webdev.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -36,11 +36,11 @@ public class Tarefa implements Serializable {
 
 	@NotNull(message = "O campo data_criacao não pode ser nulo.")
 	@Column(name = "data_criacao", nullable = false)
-	private LocalDateTime dataCriacao;
+	private LocalDate dataCriacao;
 
 	@NotNull(message = "O campo data_conclusao não pode ser nulo.")
 	@Column(name = "data_conclusao")
-	private LocalDateTime dataConclusao;
+	private LocalDate dataConclusao;
 
 	@NotNull(message = "O campo prioridade não pode ser nulo.")
 	@Column(name = "prioridade", nullable = false)
@@ -79,19 +79,19 @@ public class Tarefa implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public LocalDateTime getDataCriacao() {
+	public LocalDate getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDateTime dataCriacao) {
+	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public LocalDateTime getDataConclusao() {
+	public LocalDate getDataConclusao() {
 		return dataConclusao;
 	}
 
-	public void setDataConclusao(LocalDateTime dataConclusao) {
+	public void setDataConclusao(LocalDate dataConclusao) {
 		this.dataConclusao = dataConclusao;
 	}
 
