@@ -1,4 +1,4 @@
-package br.edu.iff.ccc.bsi.webdev.entities;
+package br.edu.iff.ccc.bsi.webdev;
 
 import java.io.Serializable;
 
@@ -13,13 +13,12 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "tb_item")
-public abstract class Item implements Serializable {
+@Table(name = "tb_anexo")
+public abstract class AnexoServiceTest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
