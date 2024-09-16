@@ -31,4 +31,7 @@ public class AnexoService {
         anexoRepository.deleteById(id);
     }
 
+    public List<Anexo> findByTarefa(Long tarefaId) {
+        return anexoRepository.findByTarefa(tarefaId);
+    }
 }
