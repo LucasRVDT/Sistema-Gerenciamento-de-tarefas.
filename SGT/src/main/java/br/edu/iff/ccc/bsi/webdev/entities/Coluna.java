@@ -13,6 +13,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import jakarta.validation.constraints.NotNull;
+
 
 @SuppressWarnings("serial")
 @Entity
@@ -23,9 +25,11 @@ public class Coluna implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+	@NotNull(message = "O campo nome não pode ser nulo.")
     @Column(name = "nome", nullable = false)
     private String nome;
 
+	@NotNull(message = "O campo ordem não pode ser nulo.")
     @Column(name = "ordem", nullable = false)
     private int ordem;
 

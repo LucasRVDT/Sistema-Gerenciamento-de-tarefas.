@@ -10,6 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
+
+import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -22,9 +26,11 @@ public abstract class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull(message = "O campo nome não pode ser nulo.")
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Size(min = 5, max = 200, message = "A descricao deve ter entre 5 e 200 caracteres.")
     @Column(name = "descricao")
     private String descricao;
 
