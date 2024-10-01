@@ -16,7 +16,7 @@ import br.edu.iff.ccc.bsi.webdev.entities.Coluna;
 import br.edu.iff.ccc.bsi.webdev.service.ColunaService;
 
 @RestController
-@RequestMapping("/coluna")
+@RequestMapping("/v01/coluna")
 public class ColunaController {
 
 	@Autowired

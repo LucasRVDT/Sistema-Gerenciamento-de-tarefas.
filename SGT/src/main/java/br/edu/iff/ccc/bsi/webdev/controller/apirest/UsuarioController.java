@@ -12,7 +12,7 @@ import br.edu.iff.ccc.bsi.webdev.entities.Usuario;
 import br.edu.iff.ccc.bsi.webdev.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/v01/usuarios")
 public class UsuarioController {
 
     @Autowired

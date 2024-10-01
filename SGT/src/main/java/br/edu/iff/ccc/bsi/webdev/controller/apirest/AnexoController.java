@@ -16,7 +16,7 @@ import br.edu.iff.ccc.bsi.webdev.entities.Anexo;
 import br.edu.iff.ccc.bsi.webdev.service.AnexoService;
 
 @RestController
-@RequestMapping("/anexo")
+@RequestMapping("/v01/anexo")
 public class AnexoController {
 
 	@Autowired

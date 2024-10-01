@@ -16,7 +16,7 @@ import br.edu.iff.ccc.bsi.webdev.entities.Quadro;
 import br.edu.iff.ccc.bsi.webdev.service.QuadroService;
 
 @RestController
-@RequestMapping("/quadro")
+@RequestMapping("/v01/quadro")
 public class QuadroController {
 
 	@Autowired
