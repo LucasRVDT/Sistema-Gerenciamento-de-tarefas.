@@ -2,8 +2,6 @@ package br.edu.iff.ccc.bsi.webdev.controller.apirest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Usuario;
 import br.edu.iff.ccc.bsi.webdev.exceptions.UserNotFoundException;
+import br.edu.iff.ccc.bsi.webdev.mapper.UsuarioMapper;
 import br.edu.iff.ccc.bsi.webdev.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
