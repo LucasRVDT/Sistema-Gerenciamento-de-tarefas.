@@ -12,8 +12,10 @@ public class UsuarioMapper {
         UsuarioModel model = new UsuarioModel(usuario.getId(), usuario.getUsername(), usuario.getEmail(),
                 usuario.getSenha(), usuario.getQuadros());
 
-        model.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioController.class).getUsuarioById(usuario.getId())).withSelfRel());
+        // Adiciona o link HATEOAS
+        model.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioController.class).findById(usuario.getId())).withSelfRel());
 
         return model;
     }
 }
+
