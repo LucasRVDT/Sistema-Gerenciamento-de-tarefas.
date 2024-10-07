@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Usuario;
-import br.edu.iff.ccc.bsi.webdev.exceptions.TarefaNotFoundException;
-import br.edu.iff.ccc.bsi.webdev.mapper.UsuarioMapper;
+import br.edu.iff.ccc.bsi.webdev.exceptions.UserNotFoundException;
 import br.edu.iff.ccc.bsi.webdev.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,83 +31,72 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @Operation(summary = "Seleciona todos os usuários")
+	@Operation(summary = "Seleciona todas as usuarios")
+	@ApiResponses(value = { 
+	@ApiResponse(responseCode = "200", description = "Usuarios encontrados", content = { 
+		@Content(mediaType = "application/json", schema = @Schema(implementation = Usuario.class))
+	}),
+	@ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content), 
+	@ApiResponse(responseCode = "404", description = "usuarios não encontrados", content = @Content) })
+	@GetMapping("/list")
+	public List<Usuario> getListUsuario() {
+		return usuarioService.findAll();
+	}
+	
+	@Operation(summary = "Seleciona usuario por ID")
+	@ApiResponses(value = { 
+	@ApiResponse(responseCode = "200", description = "Usuario encontrada", content = { 
+		@Content(mediaType = "application/json", schema = @Schema(implementation = Usuario.class))
+	}),
+	@ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content), 
+	@ApiResponse(responseCode = "404", description = "Usuario não encontrado", content = @Content) })
+	@GetMapping("/id/{id}")
+	public Usuario findById(@Parameter(description = "ID da usuario para busca unitária") 
+	  @PathVariable long id) {
+	    return usuarioService.findById(id).orElseThrow(() -> new UserNotFoundException("/users/" + id, "Usuário com ID " + id + " não encontrado"));
+	}
+
+	@Operation(summary = "Salva a usuario")
+	@ApiResponses(value = { 
+	@ApiResponse(responseCode = "200", description = "Usuario salvo", content = { 
+		@Content(mediaType = "application/json", schema = @Schema(implementation = Usuario.class))
+	}),
+	@ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content) })
+	@PostMapping("/save")
+	public Object saveUsuario(@RequestBody Usuario usuario) {
+		return usuarioService.save(usuario);
+	}
+
+	@Operation(summary = "Deleta um usuario")
+	@ApiResponses(value = { 
+	@ApiResponse(responseCode = "200", description = "Usuario deletado", content = { 
+		@Content(mediaType = "application/json", schema = @Schema(implementation = Usuario.class))
+	}),
+	@ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content) })
+	@DeleteMapping("/delete")
+	public void deleteUsuario(@PathVariable Long id) {
+		usuarioService.deleteById(id);
+	}
+    @Operation(summary = "Seleciona usuario por username")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Usuários encontrados", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioModel.class))
-        }),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content),
-        @ApiResponse(responseCode = "404", description = "Usuários não encontrados", content = @Content)
-    })
-    @GetMapping("/list")
-    public List<UsuarioModel> getListUsuario() {
-        return usuarioService.findAll().stream()
-                .map(UsuarioMapper::toModel)
-                .collect(Collectors.toList());
+            @ApiResponse(responseCode = "200", description = "Usuario encontrado", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Usuario.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado", content = @Content) })
+
+    @GetMapping("/username/{username}")
+    public Optional<Usuario> getUsuarioByUsername(@PathVariable String username) {
+        return usuarioService.findByUsername(username);
     }
 
     @Operation(summary = "Seleciona usuário por ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Usuário encontrado", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioModel.class))
-        }),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content),
-        @ApiResponse(responseCode = "404", description = "Usuário não encontrado", content = @Content)
-    })
-    @GetMapping("/id/{id}")
-    public UsuarioModel findById(@Parameter(description = "ID do usuário para busca unitária") 
-                                  @PathVariable long id) {
-        Usuario usuario = usuarioService.findById(id).orElseThrow(() -> new TarefaNotFoundException());
-        return UsuarioMapper.toModel(usuario);
-    }
-
-    @Operation(summary = "Salva o usuário")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Usuário salvo", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioModel.class))
-        }),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content)
-    })
-    @PostMapping("/save")
-    public UsuarioModel saveUsuario(@RequestBody Usuario usuario) {
-        Usuario savedUsuario = usuarioService.save(usuario);
-        return UsuarioMapper.toModel(savedUsuario);
-    }
-
-    @Operation(summary = "Deleta um usuário")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Usuário deletado", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioModel.class))
-        }),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content)
-    })
-    @DeleteMapping("/delete/{id}")
-    public void deleteUsuario(@PathVariable Long id) {
-        usuarioService.deleteById(id);
-    }
-
-    @Operation(summary = "Seleciona usuário por username")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Usuário encontrado", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioModel.class))
-        }),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content),
-        @ApiResponse(responseCode = "404", description = "Usuário não encontrado", content = @Content)
-    })
-    @GetMapping("/username/{username}")
-    public UsuarioModel getUsuarioByUsername(@PathVariable String username) {
-        Usuario usuario = usuarioService.findByUsername(username)
-                .orElseThrow(() -> new TarefaNotFoundException("Usuário não encontrado pelo username: " + username));
-        return UsuarioMapper.toModel(usuario);
-    }
-
-    @Operation(summary = "Seleciona usuário por email")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Usuário encontrado", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioModel.class))
-        }),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content),
-        @ApiResponse(responseCode = "404", description = "Usuário não encontrado", content = @Content)
+            @ApiResponse(responseCode = "200", description = "Usuario encontrado", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Usuario.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado", content = @Content)
     })
     @GetMapping("/email/{email}")
     public Optional<UsuarioModel> getUsuarioByEmail(@PathVariable String email) {
