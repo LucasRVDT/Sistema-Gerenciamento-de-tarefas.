@@ -41,6 +41,10 @@ public class Anexo implements Serializable {
     
     // Getters and Setters
     
+	public Long getId() {
+		return id;
+	}
+    
 	public String getNome() {
 		return nome;
 	}

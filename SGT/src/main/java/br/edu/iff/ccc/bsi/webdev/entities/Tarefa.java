@@ -62,6 +62,10 @@ public class Tarefa implements Serializable {
 	private List<Anexo> anexos;
 
 	// Getters and Setters
+	
+	public Long getId() {
+		return id;
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -134,5 +138,6 @@ public class Tarefa implements Serializable {
 	public void setAnexos(List<Anexo> anexos) {
 		this.anexos = anexos;
 	}
+
 
 }

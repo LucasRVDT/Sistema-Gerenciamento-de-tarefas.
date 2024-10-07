@@ -60,6 +60,11 @@ public class Quadro implements Serializable {
     private List<Usuario> membros;
 
     // Getters and Setters
+    
+	public Long getId() {
+		return id;
+	}
+
 
 	public String getNome() {
 		return nome;
@@ -116,6 +121,5 @@ public class Quadro implements Serializable {
 	public void setMembros(List<Usuario> membros) {
 		this.membros = membros;
 	}
-
 
 }

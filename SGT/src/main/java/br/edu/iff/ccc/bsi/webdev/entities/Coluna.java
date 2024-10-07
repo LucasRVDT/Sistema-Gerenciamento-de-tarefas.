@@ -75,5 +75,9 @@ public class Coluna implements Serializable {
 		this.tarefas = tarefas;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 
 }
