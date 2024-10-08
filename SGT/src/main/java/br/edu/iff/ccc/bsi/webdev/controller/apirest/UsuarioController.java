@@ -26,7 +26,7 @@ import br.edu.iff.ccc.bsi.webdev.RepresentationModels.UsuarioModel;
 @RestController
 @RequestMapping("/v01/usuarios")
 public class UsuarioController {
-
+ 
     @Autowired
     private UsuarioService usuarioService;
 
