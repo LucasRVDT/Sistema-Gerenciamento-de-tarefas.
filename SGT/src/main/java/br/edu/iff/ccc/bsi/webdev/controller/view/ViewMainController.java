@@ -14,7 +14,7 @@ public class ViewMainController {
 
 
 	//outra forma de fazer
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public ResponseEntity<String> page2(){
 		String body = " <div>\r\n"
 	    		+ "    <p style={styles.title}>Choose your flavor</p>\r\n"
@@ -56,13 +56,9 @@ public class ViewMainController {
 	    		+ "    </Button>\r\n"
 	    		+ "  </div>";
 	}
-	
-	@GetMapping("/pagina2")
-	public String getHome() {
-		return "home.html";
-	}
-	
-	@GetMapping("/login")
+	*/
+
+	@GetMapping("/")
 	public String getLogin() {
 		return "login.html";
 	}
