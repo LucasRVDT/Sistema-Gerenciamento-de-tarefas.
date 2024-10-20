@@ -64,4 +64,11 @@ public class UsuarioControllerView {
         return "redirect:/usuarios"; 
     }
 
+    
+    @PostMapping("/excluir/{id}")
+    public String deleteUsuario(@PathVariable("id") Long id) {
+        usuarioService.deleteById(id);
+        return "redirect:/usuarios";
+    }
+
 }

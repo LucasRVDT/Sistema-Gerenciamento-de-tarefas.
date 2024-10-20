@@ -9,8 +9,8 @@
 <body>
     <h1 th:text="${usuario.id != null} ? 'Editar Usuário' : 'Novo Usuário'"></h1>
 
-    <form th:action="@{${usuario.id != null} ? '/usuarios/atualizar/' + ${usuario.id} : '/usuarios/novo'}" th:object="${usuario}" method="post">
-		
+ 	<form th:action="@{${usuario.id != null} ? '/usuarios/atualizar/' + ${usuario.id} : '/usuarios/salvar'}" th:object="${usuario}" method="post">
+
 		<div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" th:field="*{username}" placeholder="Digite o username" required>

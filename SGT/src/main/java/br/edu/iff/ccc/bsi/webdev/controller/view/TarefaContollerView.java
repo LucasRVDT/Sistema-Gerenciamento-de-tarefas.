@@ -22,44 +22,44 @@ public class TarefaContollerView {
     @Autowired
     private TarefaRepository tarefaRepository;
 
-    // Listar todas as tarefas (Read)
+    
     @GetMapping
     public String listTarefas(Model model) {
         model.addAttribute("tarefas", tarefaRepository.findAll());
-        return "tarefas"; // Nome da página Thymeleaf para exibir as tarefas
+        return "tarefas"; 
     }
 
-    // Exibir o formulário de criação de uma nova tarefa (Create)
+    
     @GetMapping("/novo")
     public String showCreateForm(Model model) {
-        Tarefa tarefa = new Tarefa(); // Cria uma nova instância de Tarefa
+        Tarefa tarefa = new Tarefa(); 
         model.addAttribute("tarefa", tarefa);
-        return "form-tarefa"; // Nome da página Thymeleaf para o formulário
+        return "form-tarefa"; 
     }
 
-    // Criar ou atualizar uma tarefa (Create/Update)
+    
     @PostMapping("/salvar")
     public String saveTarefa(@ModelAttribute("tarefa") Tarefa tarefa) {
-        tarefaRepository.save(tarefa); // Salva ou atualiza a tarefa
-        return "redirect:/tarefas"; // Redireciona para a lista de tarefas
+        tarefaRepository.save(tarefa); 
+        return "redirect:/tarefas"; 
     }
 
-    // Exibir o formulário de edição de uma tarefa existente (Update)
+    
     @GetMapping("/editar/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
         if (tarefaOptional.isPresent()) {
             model.addAttribute("tarefa", tarefaOptional.get());
-            return "form-tarefa"; // Nome da página Thymeleaf para o formulário de edição
+            return "form-tarefa"; 
         } else {
-            return "redirect:/tarefas"; // Redireciona caso a tarefa não seja encontrada
+            return "redirect:/tarefas"; 
         }
     }
 
-    // Deletar uma tarefa (Delete)
+    
     @GetMapping("/deletar/{id}")
     public String deleteTarefa(@PathVariable("id") Long id) {
-        tarefaRepository.deleteById(id); // Deleta a tarefa pelo ID
-        return "redirect:/tarefas"; // Redireciona para a lista de tarefas
+        tarefaRepository.deleteById(id); 
+        return "redirect:/tarefas"; 
     }
 }

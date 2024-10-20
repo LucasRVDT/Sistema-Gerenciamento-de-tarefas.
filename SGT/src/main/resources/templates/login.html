@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Sistema de gerenciamento</title>
- <link rel="stylesheet" th:href="@{/styles/login.css}">
+    <title>Sistema de gerenciamento - Login</title>
+    <link rel="stylesheet" th:href="@{/styles/login.css}" />
   </head>
   <body>
-    <main>
-		<div class="login-container">
-		    <h2>Login</h2>
-		    <form th:action="@{/login}" method="post">
-		        <div class="form-group">
-		            <label for="email">Email</label>
-		            <input type="email" id="email" name="email" th:value="${email}" required>
-		        </div>
-		        <div class="form-group">
-		            <label for="password">Password</label>
-		            <input type="password" id="password" name="password" th:value="${password}" required>
-		        </div>
-		        <button type="submit">Login</button>
-		        <a th:href="@{/forgot-password}">Forgot Password?</a>
-		    </form>
-		</div>
-    </main>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form th:action="@{/login}" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" th:value="${email}" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" th:value="${password}" required />
+        </div>
+        <button type="submit">Login</button>
+        <a th:href="@{/forgot-password}">Forgot Password?</a>
+      </form>
+    </div>
   </body>
 </html>

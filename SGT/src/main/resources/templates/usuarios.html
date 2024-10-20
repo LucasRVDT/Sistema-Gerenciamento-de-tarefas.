@@ -34,7 +34,7 @@
                     <!-- Botão para excluir o usuário -->
                     <form th:action="@{/usuarios/excluir/{id}(id=${usuario.id})}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
                         <input type="hidden" name="_method" value="delete">
-                        <button type="submit" class="delete-button">Excluir</button>
+						<button th:href="@{/usuarios/excluir/{id}(id=${usuario.id})}" class="delete-button" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
                     </form>
                 </td>
             </tr>

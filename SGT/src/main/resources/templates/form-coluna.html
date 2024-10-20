@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${coluna.id != null} ? 'Editar Coluna' : 'Nova Coluna'"></title>
+    <!-- Importação do CSS externo -->
+    <link rel="stylesheet" th:href="@{/styles/colunas.css}">
+</head>
+<body>
+    <h1 th:text="${coluna.id != null} ? 'Editar Coluna' : 'Nova Coluna'"></h1>
+
+    <form th:action="@{${coluna.id != null} ? '/colunas/atualizar/' + ${coluna.id} : '/colunas/salvar'}" 
+          th:object="${coluna}" method="post">
+
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" placeholder="Digite o nome da coluna" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ordem">Ordem:</label>
+            <input type="number" id="ordem" th:field="*{ordem}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="quadro">Quadro:</label>
+            <select id="quadro" th:field="*{quadro}" required>
+                <option th:each="quadro : ${quadros}" th:value="${quadro.id}" th:text="${quadro.nome}"></option>
+            </select>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="form-actions">
+            <button type="submit" class="button">Salvar</button>
+            <a th:href="@{/colunas}" class="button">Cancelar</a>
+        </div>
+    </form>
+
+    <div th:if="${coluna.id != null}">
+        <form th:action="@{/colunas/deletar/{id}(id=${coluna.id})}" method="delete" onsubmit="return confirm('Tem certeza que deseja excluir esta coluna?');">
+            <button type="submit" class="button" style="background-color: red; color: white;">Excluir</button>
+        </form>
+    </div>
+</body>
+</html>

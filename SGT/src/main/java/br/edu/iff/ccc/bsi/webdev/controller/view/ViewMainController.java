@@ -12,6 +12,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //@RequestMapping(path = "teste")
 public class ViewMainController {
 
+	@GetMapping("/")
+	public String getLogin() {
+		return "login.html";
+	}
+	@GetMapping("/usuario")
+	public String getUsuario() {
+		return "usuario.html";
+	}
+	@GetMapping("/dashboard")
+	public String getDashboard() {
+		return "quadro-dashboard.html";
+	}
+	@GetMapping("/quadro")
+	public String getQuadro() {
+		return "quadro.html";
+	}
+	@GetMapping("/coluna")
+	public String getColuna() {
+		return "coluna.html";
+	}
+	@GetMapping("/Anexo")
+	public String getAnexo() {
+		return "anexo.html";
+	}
+	
 
 	//outra forma de fazer
 	/*@GetMapping("/")
@@ -58,9 +83,4 @@ public class ViewMainController {
 	}
 	*/
 
-	@GetMapping("/")
-	public String getLogin() {
-		return "login.html";
-	}
-	
 }
