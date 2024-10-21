@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Quadro;
-import br.edu.iff.ccc.bsi.webdev.repository.QuadroRepository;
+import br.edu.iff.ccc.bsi.webdev.service.QuadroService;
 
 @Controller
 @RequestMapping("/quadros")
 public class QuadroControllerView {
 
     @Autowired
-    private QuadroRepository quadroRepository;
+    private QuadroService quadroService;
 
     @GetMapping
     public String listQuadros(Model model) {
-        model.addAttribute("quadros", quadroRepository.findAll());
+        model.addAttribute("quadros", quadroService.findAll());
         return "quadros"; 
     }
 
@@ -38,14 +38,14 @@ public class QuadroControllerView {
     
     @PostMapping("/salvar")
     public String saveQuadro(@ModelAttribute("quadro") Quadro quadro) {
-        quadroRepository.save(quadro); 
+        quadroService.save(quadro); 
         return "redirect:/quadros"; 
     }
 
     
     @GetMapping("/editar/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        Optional<Quadro> quadroOptional = quadroRepository.findById(id);
+        Optional<Quadro> quadroOptional = quadroService.findById(id);
         if (quadroOptional.isPresent()) {
             model.addAttribute("quadro", quadroOptional.get());
             return "form-quadro"; 
@@ -55,9 +55,9 @@ public class QuadroControllerView {
     }
 
     
-    @GetMapping("/deletar/{id}")
+    @PostMapping("/deletar/{id}")
     public String deleteQuadro(@PathVariable("id") Long id) {
-        quadroRepository.deleteById(id); 
+        quadroService.deleteById(id); 
         return "redirect:/quadros"; 
     }
 }
