@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tarefas</title>
+	<link rel="stylesheet" th:href="@{/styles/tarefas.css}">
 </head>
 <body>
     <h1>Lista de Tarefas</h1>
@@ -26,6 +27,6 @@
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/tarefas/novo}">Nova Tarefa</a>
+    <a th:href="@{/tarefas/novo}" class="button">Nova Tarefa</a>
 </body>
 </html>
