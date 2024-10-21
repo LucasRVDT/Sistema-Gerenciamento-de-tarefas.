@@ -13,19 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Tarefa;
-import br.edu.iff.ccc.bsi.webdev.repository.TarefaRepository;
+import br.edu.iff.ccc.bsi.webdev.service.TarefaService;
+
 
 @Controller
 @RequestMapping("/tarefas")
 public class TarefaContollerView {
 
     @Autowired
-    private TarefaRepository tarefaRepository;
+    private TarefaService tarefaService;
 
     
     @GetMapping
     public String listTarefas(Model model) {
-        model.addAttribute("tarefas", tarefaRepository.findAll());
+        model.addAttribute("tarefas", tarefaService.findAll());
         return "tarefas"; 
     }
 
@@ -40,14 +41,14 @@ public class TarefaContollerView {
     
     @PostMapping("/salvar")
     public String saveTarefa(@ModelAttribute("tarefa") Tarefa tarefa) {
-        tarefaRepository.save(tarefa); 
+        tarefaService.save(tarefa); 
         return "redirect:/tarefas"; 
     }
 
     
     @GetMapping("/editar/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
+        Optional<Tarefa> tarefaOptional = tarefaService.findById(id);
         if (tarefaOptional.isPresent()) {
             model.addAttribute("tarefa", tarefaOptional.get());
             return "form-tarefa"; 
@@ -57,9 +58,9 @@ public class TarefaContollerView {
     }
 
     
-    @GetMapping("/deletar/{id}")
+    @PostMapping("/deletar/{id}")
     public String deleteTarefa(@PathVariable("id") Long id) {
-        tarefaRepository.deleteById(id); 
+        tarefaService.deleteById(id); 
         return "redirect:/tarefas"; 
     }
 }
