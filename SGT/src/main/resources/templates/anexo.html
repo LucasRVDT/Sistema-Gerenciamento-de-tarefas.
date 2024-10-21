@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Anexos</title>
+    <link rel="stylesheet" th:href="@{/styles/anexos.css}">
+</head>
+<body>
+    <h1>Lista de Anexos</h1>
+
+    <a th:href="@{/anexos/novo}" class="button">Adicionar Novo Anexo</a>
+
+    <table class="my-3 d-flex justify-content-center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>URL</th>
+                <th>Tipo</th>
+                <th>Tarefa</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="anexo : ${anexos}">
+                <td th:text="${anexo.id}"></td>
+                <td th:text="${anexo.nome}"></td>
+                <td th:text="${anexo.url}"></td>
+                <td th:text="${anexo.tipo}"></td>
+                <td th:text="${anexo.tarefa.nome}"></td>
+                <td>
+                    <a th:href="@{/anexos/editar/{id}(id=${anexo.id})}" class="button">Editar</a>
+
+                    <form th:action="@{/anexos/excluir/{id}(id=${anexo.id})}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este anexo?');">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}" class="button">Voltar</a>
+</body>
+</html>

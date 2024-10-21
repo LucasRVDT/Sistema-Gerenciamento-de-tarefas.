@@ -12,9 +12,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //@RequestMapping(path = "teste")
 public class ViewMainController {
 
+	@GetMapping("/")
+	public String getLogin() {
+		return "login.html";
+	}
+	@GetMapping("/usuario")
+	public String getUsuario() {
+		return "usuario.html";
+	}
+	@GetMapping("/dashboard")
+	public String getDashboard() {
+		return "quadro-dashboard.html";
+	}
+	@GetMapping("/quadro")
+	public String getQuadro() {
+		return "quadro.html";
+	}
+	@GetMapping("/coluna")
+	public String getColuna() {
+		return "coluna.html";
+	}
+	@GetMapping("/anexo")
+	public String getAnexo() {
+		return "anexo.html";
+	}
+	
 
 	//outra forma de fazer
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public ResponseEntity<String> page2(){
 		String body = " <div>\r\n"
 	    		+ "    <p style={styles.title}>Choose your flavor</p>\r\n"
@@ -56,15 +81,6 @@ public class ViewMainController {
 	    		+ "    </Button>\r\n"
 	    		+ "  </div>";
 	}
-	
-	@GetMapping("/pagina2")
-	public String getHome() {
-		return "home.html";
-	}
-	
-	@GetMapping("/login")
-	public String getLogin() {
-		return "login.html";
-	}
-	
+	*/
+
 }

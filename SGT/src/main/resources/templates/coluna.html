@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Colunas</title>
+    <link rel="stylesheet" th:href="@{/styles/colunas.css}">
+</head>
+<body>
+    <h1>Lista de Colunas</h1>
+
+    <a th:href="@{/colunas/novo}" class="button">Adicionar Nova Coluna</a>
+
+    <table class="my-3 d-flex justify-content-center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ordem</th>
+                <th>Quadro</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="coluna : ${colunas}">
+                <td th:text="${coluna.id}"></td>
+                <td th:text="${coluna.nome}"></td>
+                <td th:text="${coluna.ordem}"></td>
+                <td th:text="${coluna.quadro.nome}"></td>
+                <td>
+                    <a th:href="@{/colunas/editar/{id}(id=${coluna.id})}" class="button">Editar</a>
+
+                    <form th:action="@{/colunas/excluir/{id}(id=${coluna.id})}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir esta coluna?');">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}" class="button">Voltar</a>
+</body>
+</html>
