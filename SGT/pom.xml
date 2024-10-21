@@ -68,6 +68,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-thymeleaf</artifactId> 
     </dependency>
+    
+    <!-- Validation -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+	</dependency>
 
     <!-- Dependência para o banco de dados H2 -->
     <dependency>

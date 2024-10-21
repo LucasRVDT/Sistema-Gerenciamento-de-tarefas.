@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard do Quadro</title>
+    <link rel="stylesheet" th:href="@{/styles/dashboard.css}">
+    <script th:src="@{/scripts/dashboard.js}"></script>
+</head>
+<body>
+    <h1 th:text="'Dashboard do Quadro: ' + ${quadro.nome}"></h1>
+
+    <div>
+        <h2>Colunas</h2>
+        <button onclick="openModal('modalColuna')">Adicionar Coluna</button>
+        
+        <div th:each="coluna : ${quadro.colunas}">
+            <h3 th:text="${coluna.nome}"></h3>
+            <p th:text="'Ordem: ' + ${coluna.ordem}"></p>
+            <button th:onclick="'openModal(' + 'modalTarefa' + ',' + ${coluna.id} + ')'">Adicionar Tarefa</button>
+
+            <ul>
+                <li th:each="tarefa : ${coluna.tarefas}">
+                    <span th:text="${tarefa.nome}"></span> 
+                    <button th:onclick="'openModal(' + 'modalTarefa' + ',' + ${tarefa.id} + ')'">Editar</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal para Coluna -->
+    <dialog id="modalColuna">
+        <form th:action="@{${coluna.id != null} ? '/coluna/atualizar/' + ${coluna.id} : '/coluna/novo'}" th:object="${coluna}" method="post">
+            <h2 th:text="${coluna.id != null} ? 'Editar Coluna' : 'Nova Coluna'"></h2>
+            <label for="nomeColuna">Nome:</label>
+            <input type="text" id="nomeColuna" th:field="*{nome}" required>
+            
+            <label for="ordemColuna">Ordem:</label>
+            <input type="number" id="ordemColuna" th:field="*{ordem}" required>
+            
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="closeModal('modalColuna')">Cancelar</button>
+        </form>
+    </dialog>
+
+    <!-- Modal para Tarefa -->
+    <dialog id="modalTarefa">
+        <form th:action="@{${tarefa.id != null} ? '/tarefa/atualizar/' + ${tarefa.id} : '/tarefa/novo'}" th:object="${tarefa}" method="post">
+            <h2 th:text="${tarefa.id != null} ? 'Editar Tarefa' : 'Nova Tarefa'"></h2>
+            <label for="nomeTarefa">Nome:</label>
+            <input type="text" id="nomeTarefa" th:field="*{nome}" required>
+            
+            <label for="descricaoTarefa">Descrição:</label>
+            <input type="text" id="descricaoTarefa" th:field="*{descricao}" required>
+            
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="closeModal('modalTarefa')">Cancelar</button>
+        </form>
+    </dialog>
+</body>
+</html>

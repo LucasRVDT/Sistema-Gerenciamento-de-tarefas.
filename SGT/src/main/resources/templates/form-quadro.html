@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Quadro</title>
+    <link rel="stylesheet" th:href="@{/styles/quadros.css}">
+</head>
+<body>
+    <h1 th:text="${quadro.id != null} ? 'Editar Quadro' : 'Novo Quadro'"></h1>
+
+    <form th:action="@{${quadro.id != null} ? '/quadros/atualizar/' + ${quadro.id} : '/quadros/novo'}" th:object="${quadro}" method="post">
+		
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" placeholder="Digite o nome do quadro" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" th:field="*{descricao}" placeholder="Digite a descrição"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="text" id="status" th:field="*{status}" placeholder="Digite o status" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dataCriacao">Data de Criação:</label>
+            <input type="datetime-local" id="dataCriacao" th:field="*{dataCriacao}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="usuario">Usuário:</label>
+            <select id="usuario" th:field="*{usuario}">
+                <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="button">Salvar</button>
+            <a th:href="@{/quadros}" class="button">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuários</title>
+    <!-- Importação do CSS externo -->
+    <link rel="stylesheet" th:href="@{/styles/usuarios.css}">
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+
+    <!-- Botão para adicionar novo usuário -->
+    <a th:href="@{/usuarios/novo}" class="button">Adicionar Novo Usuário</a>
+
+    <!-- Tabela de usuários -->
+    <table class="my-3 d-flex justify-content-center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.id}"></td>
+                <td th:text="${usuario.username}"></td>
+                <td th:text="${usuario.email}"></td>
+                <td>
+                    <!-- Link para editar o usuário -->
+                    <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="button">Editar</a>
+
+                    <!-- Botão para excluir o usuário -->
+                    <form th:action="@{/usuarios/excluir/{id}(id=${usuario.id})}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                        <input type="hidden" name="_method" value="delete">
+						<button th:href="@{/usuarios/excluir/{id}(id=${usuario.id})}" class="delete-button" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Link para voltar ao painel de controle (ou outra página) -->
+    <a th:href="@{/}" class="button">Voltar</a>
+</body>
+</html>

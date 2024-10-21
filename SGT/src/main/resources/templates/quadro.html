@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Quadros</title>
+    <link rel="stylesheet" th:href="@{/styles/quadros.css}">
+</head>
+<body>
+    <h1>Lista de Quadros</h1>
+
+    <a th:href="@{/quadros/novo}" class="button">Adicionar Novo Quadro</a>
+
+    <table class="my-3 d-flex justify-content-center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="quadro : ${quadros}">
+                <td th:text="${quadro.id}"></td>
+                <td th:text="${quadro.nome}"></td>
+                <td th:text="${quadro.descricao}"></td>
+                <td th:text="${quadro.status}"></td>
+                <td>
+                    <a th:href="@{/quadros/editar/{id}(id=${quadro.id})}" class="button">Editar</a>
+
+                    <form th:action="@{/quadros/excluir/{id}(id=${quadro.id})}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este quadro?');">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}" class="button">Voltar</a>
+</body>
+</html>
