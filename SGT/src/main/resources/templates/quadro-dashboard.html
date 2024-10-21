@@ -7,7 +7,7 @@
     <script th:src="@{/scripts/dashboard.js}"></script>
 </head>
 <body>
-    <!--<h1 th:text="'Dashboard do Quadro: ' + ${quadro.nome}"></h1>-->
+    <!-- + ${quadro.nome} --><h1 th:text="'Dashboard do Quadro: -'"></h1>
 
     <!--<div>
         <h2>Colunas</h2>
@@ -27,7 +27,7 @@
         </div>
     </div>-->
 
-    <!-- Modal para Coluna -->
+    <!-- Modal para Coluna
     <dialog id="modalColuna">
         <form th:action="@{${coluna.id != null} ? '/coluna/atualizar/' + ${coluna.id} : '/coluna/novo'}" th:object="${coluna}" method="post">
             <h2 th:text="${coluna.id != null} ? 'Editar Coluna' : 'Nova Coluna'"></h2>
@@ -40,9 +40,9 @@
             <button type="submit">Salvar</button>
             <button type="button" onclick="closeModal('modalColuna')">Cancelar</button>
         </form>
-    </dialog>
+    </dialog> -->
 
-    <!-- Modal para Tarefa -->
+    <!-- Modal para Tarefa
     <dialog id="modalTarefa">
         <form th:action="@{${tarefa.id != null} ? '/tarefa/atualizar/' + ${tarefa.id} : '/tarefa/novo'}" th:object="${tarefa}" method="post">
             <h2 th:text="${tarefa.id != null} ? 'Editar Tarefa' : 'Nova Tarefa'"></h2>
@@ -55,6 +55,6 @@
             <button type="submit">Salvar</button>
             <button type="button" onclick="closeModal('modalTarefa')">Cancelar</button>
         </form>
-    </dialog>
+    </dialog> -->
 </body>
 </html>

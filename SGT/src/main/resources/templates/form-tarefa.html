@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulário de Tarefa</title>
+	<link rel="stylesheet" th:href="@{/styles/tarefas.css}">
 </head>
 <body>
     <h1 th:text="${#strings.isEmpty(tarefa.id) ? 'Nova Tarefa' : 'Editar Tarefa'}"></h1>
 
-    <form th:action="@{/tarefas/salvar}" th:object="${tarefa}" method="post">
+		<form th:action="@{${tarefa.id != null} ? '/tarefas/atualizar/' + ${tarefa.id} : '/tarefas/salvar'}" th:object="${tarefa}" method="post">
+
         <input type="hidden" th:field="*{id}">
 
         <!-- Título -->
