@@ -32,7 +32,7 @@ public class ViewMainController {
 	public String getColuna() {
 		return "coluna.html";
 	}
-	@GetMapping("/Anexo")
+	@GetMapping("/anexo")
 	public String getAnexo() {
 		return "anexo.html";
 	}

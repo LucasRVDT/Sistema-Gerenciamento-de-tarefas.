@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Quadro;
+import br.edu.iff.ccc.bsi.webdev.entities.Usuario;
 import br.edu.iff.ccc.bsi.webdev.service.QuadroService;
 
 @Controller
@@ -52,6 +53,15 @@ public class QuadroControllerView {
         } else {
             return "redirect:/quadros"; 
         }
+    }
+    
+    @PostMapping("/atualizar/{id}")
+    public String updateUsuario(@PathVariable("id") Long id, @ModelAttribute("quadros") Quadro quadro) {
+        if (!id.equals(quadro.getId())) {
+            return "redirect:/quadros"; 
+        }
+        quadroService.save(quadro); 
+        return "redirect:/quadros"; 
     }
 
     

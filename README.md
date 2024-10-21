@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Tarefas
 
-Repositório para a matéria de desenvolvimento web 2023.1
+Repositório para a matéria de desenvolvimento web 2024.1
 
 Um sistema web simples de gerenciamento de tarefas, onde os usuários podem criar, visualizar e gerenciar suas tarefas. O sistema possui três principais entidades: Usuários, Tarefas e Categorias.
 
