@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.edu.iff.ccc.bsi.webdev.entities.Tarefa;
+import br.edu.iff.ccc.bsi.webdev.entities.Usuario;
 import br.edu.iff.ccc.bsi.webdev.service.TarefaService;
 
 
@@ -56,6 +57,16 @@ public class TarefaContollerView {
             return "redirect:/tarefas"; 
         }
     }
+    
+    @PostMapping("/atualizar/{id}")
+    public String updateUsuario(@PathVariable("id") Long id, @ModelAttribute("tarefa") Tarefa tarefa) {
+        if (!id.equals(tarefa.getId())) {
+            return "redirect:/usuarios"; 
+        }
+        tarefaService.save(tarefa); 
+        return "redirect:/usuarios"; 
+    }
+
 
     
     @PostMapping("/deletar/{id}")
